@@ -60,7 +60,7 @@ app.use(express.static(path.join(__dirname, "frontend/build"))); // Serve static
 
 // ======== Fallback for SPA ========
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/build"));
+  res.sendFile(path.join(__dirname, "frontend/build", "index.html"));
 });
 
 // ======== Start Server ========
