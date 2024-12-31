@@ -26,11 +26,14 @@ app.use("/api/dessert", CakeRoute); // Route for dessert-related APIs
 
 // ======== Serve Static Frontend ========
 const __dirname = path.resolve(); // Resolve the current directory
-app.use(express.static(path.join(__dirname, "../frontend/build"))); // Serve static React files
+app.use(express.static(path.join(__dirname, "../foodcort/build"))); // Serve static React files
 
 // ======== Fallback for SPA ========
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+    res.send(" hello connected")
+  res.sendFile(path.join(__dirname, "../foodcort/build", "index.html"));
+  console.log("server connected");
+  
 });
 
 // ======== Start Server ========
