@@ -14,7 +14,7 @@ app.use('/upload', express.static('upload')); // Serve uploaded images
 app.use(express.json());
 app.use(cors({ origin: '*' })); // Allow requests from frontend
 
-// Connect to MongoDB
+// Connect to MongoDB 
 connectDB();
 
 // API routes
