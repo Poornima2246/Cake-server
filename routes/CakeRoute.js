@@ -54,6 +54,13 @@ const maxSize = 5 * 1024 * 1024; // 5MB file size limit
 const upload = multer({
     storage: storage,
     limits: { fileSize: maxSize },
+     fileFilter: (req, file, cb) => {
+        // Accept images only
+        if (!file.mimetype.startsWith('image/')) {
+            return cb(new Error('Only image files are allowed!'), false);
+        }
+        cb(null, true);
+    },
 });
 
 CakeRoute.post(
