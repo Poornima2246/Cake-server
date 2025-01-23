@@ -44,10 +44,7 @@ const CakeRoute = express.Router();
 
 // Multer configuration for image upload
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        const uploadPath = "upload";
-        cb(null, uploadPath); // Folder to store images
-    }, // Folder to store images
+    destination: "upload",// Folder to store images
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}_${file.originalname}`);
     },
@@ -57,13 +54,7 @@ const maxSize = 5 * 1024 * 1024; // 5MB file size limit
 const upload = multer({
     storage: storage,
     limits: { fileSize: maxSize },
-     fileFilter: (req, file, cb) => {
-        // Accept images only
-        if (!file.mimetype.startsWith('image/')) {
-            return cb(new Error('Only image files are allowed!'), false);
-        }
-        cb(null, true);
-    },
+  
 });
 
 CakeRoute.post(
