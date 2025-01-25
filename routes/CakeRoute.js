@@ -50,12 +50,26 @@ const storage = multer.diskStorage({
     },
 });
 
+
 const maxSize = 5 * 1024 * 1024; // 5MB file size limit
 const upload = multer({
     storage: storage,
     limits: { fileSize: maxSize },
   
 });
+// Middleware for logging requests
+const logRequest = (req, res, next) => {
+    console.log(`Received ${req.method} request for ${req.url}`);
+    next();
+};
+
+// Middleware for error handling
+const handleError = (err, req, res, next) => {
+    console.error(err.message);
+    res.status(500).json({ success: false, message: err.message });
+};
+
+CakeRoute.use(logRequest);
 
 CakeRoute.post(
     "/add",
